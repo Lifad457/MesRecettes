@@ -23,5 +23,13 @@ class IndexController extends Controller
     {
         return $this->render('Admin/index.html.twig');
     }
+	
+	/**
+     * @Route("/admin/test", name="adminTest")
+     */
+	public function adminTest()
+    {
+        return $this->render('Admin/Test/index.html.twig');
+    }
 
 }
