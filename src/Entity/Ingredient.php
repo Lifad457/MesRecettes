@@ -24,12 +24,7 @@ class Ingredient
     private $nom_ingredient;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $quantite;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Recette", mappedBy="ingredients")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="recettes")
      */
     private $recettes;
 
@@ -51,18 +46,6 @@ class Ingredient
     public function setNomIngredient(string $nom_ingredient): self
     {
         $this->nom_ingredient = $nom_ingredient;
-
-        return $this;
-    }
-
-    public function getQuantite(): ?string
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(string $quantite): self
-    {
-        $this->quantite = $quantite;
 
         return $this;
     }

@@ -1,3 +1,13 @@
+{{ form_start(form.nom_recette) }}
+	<div>
+		{{ form_label(form.nom_recette) }} :
+		{{ form_errors(form.nom_recette) }}
+		{{ form_errors(form.nom_recette) }}
+		{{ form_widget(form.nom_recette) }}
+	</div>
+	
+{{ form_end(form.nom_recette) }}
+
 {{ form_start(form.ingredients) }}
 	<div>
 		{{ form_label(form.ingredients) }} :
@@ -17,10 +27,29 @@
 			class="add-another-collection-widget"
 			data-list="#ingredient-fields-list">Ajouter un ingredient
 		</button>
-		
 	</div>
 	
 {{ form_end(form.ingredients) }}
+
+{{ form_start(form.note) }}
+	<div>
+		{{ form_label(form.note) }} :
+		{{ form_errors(form.note) }}
+		{{ form_errors(form.note) }}
+		{{ form_widget(form.note) }}
+	</div>
+	
+{{ form_end(form.note) }}
+
+{{ form_start(form.difficulte) }}
+	<div>
+		{{ form_label(form.difficulte) }} :
+		{{ form_errors(form.difficulte) }}
+		{{ form_errors(form.difficulte) }}
+		{{ form_widget(form.difficulte) }}
+	</div>
+	
+{{ form_end(form.difficulte) }}
 
 {{ form_start(form.description) }}
 	<div>
@@ -33,4 +62,3 @@
 		<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
 	</div>
 {{ form_end(form.description) }}
-

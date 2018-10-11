@@ -19,10 +19,10 @@ class RecetteType extends AbstractType
             ->add('note')
             ->add('difficulte')
             ->add('ingredients', CollectionType::class, array(
-				'entry_type' => TextType::class,
+				'entry_type' => IngredientType::class,
 				'allow_add' => true,
+				'allow_delete' => true,
 				'prototype' => true,
-				'prototype_data' => 'New Tag Placeholder',
 			));
     }
 	
