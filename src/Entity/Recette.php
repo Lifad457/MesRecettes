@@ -29,12 +29,12 @@ class Recette
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ingredient", inversedBy="recettes")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette")
      */
     private $ingredients;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\etape", mappedBy="recette")
+     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="recette")
      */
     private $etapes;
 
@@ -95,6 +95,7 @@ class Recette
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients[] = $ingredient;
+			$ingredient->setRecette($this);
         }
 
         return $this;
@@ -102,10 +103,13 @@ class Recette
 
     public function removeIngredient(ingredient $ingredient): self
     {
-        if ($this->ingredients->contains($ingredient)) {
+		if ($this->ingredients->contains($ingredient)) {
             $this->ingredients->removeElement($ingredient);
+            // set the owning side to null (unless already changed)
+            if ($ingredient->getRecette() === $this) {
+                $ingredient->setRecette(null);
+            }
         }
-
         return $this;
     }
 

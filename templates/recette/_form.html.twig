@@ -1,0 +1,36 @@
+{{ form_start(form.ingredients) }}
+	<div>
+		{{ form_label(form.ingredients) }} :
+		{{ form_errors(form.ingredients) }}
+		<ul id="ingredient-fields-list"
+        data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}">
+		{% for ingredientField in form.ingredients %}
+			<li>
+				{{ form_errors(ingredientField) }}
+				{{ form_widget(ingredientField) }}
+			</li>
+		{% endfor %}
+		</ul>
+
+		<button type="button"
+			class="add-another-collection-widget"
+			data-list="#ingredient-fields-list">Ajouter un ingredient
+		</button>
+		
+	</div>
+	
+{{ form_end(form.ingredients) }}
+
+{{ form_start(form.description) }}
+	<div>
+		{{ form_label(form.description) }}
+		{{ form_errors(form.description) }}
+		{{ form_widget(form.description) }}
+		{{ form_help(form.description) }}
+	</div>
+	<div>
+		<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+	</div>
+{{ form_end(form.description) }}
+
