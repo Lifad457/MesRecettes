@@ -22,7 +22,7 @@ class Ingredient
     private $nom_ingredient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="ingredients")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="ingredients", cascade={"persist"})
      */
     private $recette;
 

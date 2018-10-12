@@ -24,7 +24,7 @@ class Recette
     private $nom_recette;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette", cascade={"persist"})
      */
     private $ingredients;
 

@@ -31,6 +31,7 @@ class RecetteType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recette::class,
+			'csrf_protection' => false,
         ]);
     }
 }
