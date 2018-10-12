@@ -17,9 +17,9 @@ class Etape
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
-    private $description;
+    private $descritpion;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="etapes")
@@ -31,14 +31,14 @@ class Etape
         return $this->id;
     }
 
-    public function getDescription(): ?string
+    public function getDescritpion(): ?string
     {
-        return $this->description;
+        return $this->descritpion;
     }
 
-    public function setDescription(string $description): self
+    public function setDescritpion(string $descritpion): self
     {
-        $this->description = $description;
+        $this->descritpion = $descritpion;
 
         return $this;
     }

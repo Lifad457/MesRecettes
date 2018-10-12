@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,14 +22,9 @@ class Ingredient
     private $nom_ingredient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="recettes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="ingredients")
      */
-    private $recettes;
-
-    public function __construct()
-    {
-        $this->recettes = new ArrayCollection();
-    }
+    private $recette;
 
     public function getId(): ?int
     {
@@ -50,32 +43,15 @@ class Ingredient
         return $this;
     }
 
-    /**
-     * @return Collection|Recette[]
-     */
-    public function getRecettes(): Collection
+    public function getRecette(): ?Recette
     {
-        return $this->recettes;
+        return $this->recette;
     }
 
-    public function addRecette(Recette $recette): self
+    public function setRecette(?Recette $recette): self
     {
-        if (!$this->recettes->contains($recette)) {
-            $this->recettes[] = $recette;
-            $recette->addIngredient($this);
-        }
+        $this->recette = $recette;
 
         return $this;
     }
-
-    public function removeRecette(Recette $recette): self
-    {
-        if ($this->recettes->contains($recette)) {
-            $this->recettes->removeElement($recette);
-            $recette->removeIngredient($this);
-        }
-
-        return $this;
-    }
-    
 }

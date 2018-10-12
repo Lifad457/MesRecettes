@@ -24,11 +24,6 @@ class Recette
     private $nom_recette;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette")
      */
     private $ingredients;
@@ -39,14 +34,19 @@ class Recette
     private $etapes;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $difficulte;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $note;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="text")
      */
-    private $difficulte;
+    private $description;
 
     public function __construct()
     {
@@ -71,18 +71,6 @@ class Recette
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     /**
      * @return Collection|ingredient[]
      */
@@ -95,7 +83,7 @@ class Recette
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients[] = $ingredient;
-			$ingredient->setRecette($this);
+            $ingredient->setRecette($this);
         }
 
         return $this;
@@ -103,13 +91,14 @@ class Recette
 
     public function removeIngredient(ingredient $ingredient): self
     {
-		if ($this->ingredients->contains($ingredient)) {
+        if ($this->ingredients->contains($ingredient)) {
             $this->ingredients->removeElement($ingredient);
             // set the owning side to null (unless already changed)
             if ($ingredient->getRecette() === $this) {
                 $ingredient->setRecette(null);
             }
         }
+
         return $this;
     }
 
@@ -144,26 +133,38 @@ class Recette
         return $this;
     }
 
-    public function getNote(): ?int
+    public function getDifficulte(): ?string
+    {
+        return $this->difficulte;
+    }
+
+    public function setDifficulte(string $difficulte): self
+    {
+        $this->difficulte = $difficulte;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
     {
         return $this->note;
     }
 
-    public function setNote(int $note): self
+    public function setNote(string $note): self
     {
         $this->note = $note;
 
         return $this;
     }
 
-    public function getDifficulte(): ?int
+    public function getDescription(): ?string
     {
-        return $this->difficulte;
+        return $this->description;
     }
 
-    public function setDifficulte(int $difficulte): self
+    public function setDescription(string $description): self
     {
-        $this->difficulte = $difficulte;
+        $this->description = $description;
 
         return $this;
     }

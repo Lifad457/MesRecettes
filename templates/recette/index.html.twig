@@ -10,9 +10,9 @@
             <tr>
                 <th>Id</th>
                 <th>Nom_recette</th>
-                <th>Description</th>
-                <th>Note</th>
                 <th>Difficulte</th>
+                <th>Note</th>
+                <th>Description</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,9 +21,9 @@
             <tr>
                 <td>{{ recette.id }}</td>
                 <td>{{ recette.nomRecette }}</td>
-                <td>{{ recette.description }}</td>
-                <td>{{ recette.note }}</td>
                 <td>{{ recette.difficulte }}</td>
+                <td>{{ recette.note }}</td>
+                <td>{{ recette.description }}</td>
                 <td>
                     <a href="{{ path('recette_show', {'id': recette.id}) }}">show</a>
                     <a href="{{ path('recette_edit', {'id': recette.id}) }}">edit</a>
