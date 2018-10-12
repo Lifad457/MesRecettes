@@ -23,6 +23,7 @@ class Ingredient
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Recette", inversedBy="ingredients", cascade={"persist"})
+	 * @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
      */
     private $recette;
 
