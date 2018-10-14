@@ -21,9 +21,10 @@ class RecetteType extends AbstractType
             ->add('description')
 			->add('ingredients', CollectionType::class, array(
 				'entry_type' => IngredientType::class,
+				'entry_options' => array('label' => false),
 				'allow_add' => true,
 				'allow_delete' => true,
-				'prototype' => true,
+				'by_reference' => false,
 			));
     }
 
@@ -31,7 +32,7 @@ class RecetteType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recette::class,
-			'csrf_protection' => false,
+			'csrf_protection' => true,
         ]);
     }
 }

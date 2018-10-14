@@ -24,12 +24,12 @@ class Recette
     private $nom_recette;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Ingredient", mappedBy="recette", cascade={"persist", "remove"})
      */
     private $ingredients;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="recette")
+     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="recette", cascade={"persist", "remove"})
      */
     private $etapes;
 
@@ -81,11 +81,10 @@ class Recette
 
     public function addIngredient(ingredient $ingredient): self
     {
-        if (!$this->ingredients->contains($ingredient)) {
-            $this->ingredients[] = $ingredient;
-            $ingredient->setRecette($this);
-        }
-
+		if (!$this->ingredients->contains($ingredient)) {
+			$this->ingredients[] = $ingredient;
+			$ingredient->setRecette($this);
+		}
         return $this;
     }
 
@@ -112,10 +111,8 @@ class Recette
 
     public function addEtape(etape $etape): self
     {
-        if (!$this->etapes->contains($etape)) {
-            $this->etapes[] = $etape;
-            $etape->setRecette($this);
-        }
+        $this->etapes[] = $etape;
+        $etape->setRecette($this);
 
         return $this;
     }
