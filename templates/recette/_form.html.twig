@@ -29,12 +29,12 @@
 	
 	<div>
 		{{ form_label(form.ingredients) }} :
-		{{ form_errors(form.ingredients) }}
 		<ul id="ingredient-fields-list"
 			data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
 			data-widget-tags="{{ '<li></li>'|e }}">
 			{% for ingredientField in form.ingredients %}
 				<li>
+					{{ form_errors(ingredientField) }}
 					{{ form_widget(ingredientField) }}
 					{{ form_help(ingredientField) }}
 				</li>
