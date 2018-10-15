@@ -40,7 +40,7 @@
 				</li>
 			{% endfor %}
 		</ul>
-
+		{% do form.ingredients.setRendered %}
 		<button type="button"
 			class="add-another-collection-widget"
 			data-list="#ingredient-fields-list">Ajouter un ingredient
@@ -50,5 +50,6 @@
 	<div>
 		<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
 	</div>
-	
+
 {{ form_end(form) }}
+

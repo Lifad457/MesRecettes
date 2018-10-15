@@ -3,13 +3,13 @@
 {% block title %}Nouvelle Recette{% endblock %}
 
 {% block body %}
-<div class="container" style="margin-top:200px">
-    <h1>Créer une nouvelle Recette</h1>
+	<div class="container" style="margin-top:200px">
+		<h1>Créer une nouvelle Recette</h1>
 
-    {{ include('recette/_form.html.twig') }}
+		{{ include('recette/_form.html.twig') }}
 
-    <a href="{{ path('recette_index') }}">Retour à la liste</a>
-</div>
+		<a href="{{ path('recette_index') }}">Retour à la liste</a>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
