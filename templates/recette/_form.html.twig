@@ -1,55 +1,80 @@
 {{ form_start(form) }}
-	<div>
-		{{ form_label(form.nom_recette) }}
-		{{ form_errors(form.nom_recette) }}
-		{{ form_widget(form.nom_recette) }}
-		{{ form_help(form.nom_recette) }}
-	</div>
 	
-	<div>
-		{{ form_label(form.note) }}
-		{{ form_errors(form.note) }}
-		{{ form_widget(form.note) }}
-		{{ form_help(form.note) }}
-	</div>
-	
-	<div>
-		{{ form_label(form.difficulte) }}
-		{{ form_errors(form.difficulte) }}
-		{{ form_widget(form.difficulte) }}
-		{{ form_help(form.difficulte) }}
-	</div>
-	
-	<div>
-		{{ form_label(form.description) }}
-		{{ form_errors(form.description) }}
-		{{ form_widget(form.description) }}
-		{{ form_help(form.description) }}
-	</div>
-	
-	<div>
-		{{ form_label(form.ingredients) }} :
-		<ul id="ingredient-fields-list"
-			data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
-			data-widget-tags="{{ '<li></li>'|e }}">
-			{% for ingredientField in form.ingredients %}
-				<li>
-					{{ form_errors(ingredientField) }}
-					{{ form_widget(ingredientField) }}
-					{{ form_help(ingredientField) }}
-				</li>
-			{% endfor %}
-		</ul>
-		{% do form.ingredients.setRendered %}
-		<button type="button"
-			class="add-another-collection-widget"
-			data-list="#ingredient-fields-list">Ajouter un ingredient
-		</button>
-	</div>
-	
-	<div>
-		<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
-	</div>
+<div class="container" style="margin-top:50px">	
+	<div class="row">
+		<div class="col-md">
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-3">
+					{{ form_label(form.nom_recette) }} :
+					{{ form_errors(form.nom_recette) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_widget(form.nom_recette) }}
+					{{ form_help(form.nom_recette) }}
+				</div>
+			</div>
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-3">
+					{{ form_label(form.note) }} :
+					{{ form_errors(form.note) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_widget(form.note) }}
+					{{ form_help(form.note) }}
+				</div>
+			</div>
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-3">
+					{{ form_label(form.difficulte) }} :
+					{{ form_errors(form.difficulte) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_widget(form.difficulte) }}
+					{{ form_help(form.difficulte) }}
+				</div>
+			</div>
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-3">
+					{{ form_label(form.description) }} :
+					{{ form_errors(form.description) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_widget(form.description) }}
+					{{ form_help(form.description) }}
+				</div>
+			</div>		
+		</div>
 
+		<div class="col-md">
+			{{ form_label(form.ingredients) }} :
+			<div class="row">
+				<div class="col-md-6">
+					<ul id="ingredient-fields-list"
+						data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
+						data-widget-tags="{{ '<li></li>'|e }}">
+						{% for ingredientField in form.ingredients %}
+							<li>
+								{{ form_errors(ingredientField) }}
+								{{ form_widget(ingredientField) }}
+								{{ form_help(ingredientField) }}
+							</li>
+						{% endfor %}
+					</ul>
+					{% do form.ingredients.setRendered %}
+					<button type="button"
+						class="add-another-collection-widget btn-secondary"
+						data-list="#ingredient-fields-list">Ajouter un ingredient
+					</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="row">
+		<div class="col-md-2 col-md-2 align-self-end">
+			<button class="btn btn-info">{{ button_label|default('Sauvegarder') }}</button>
+		</div>
+	</div>
+</div>
 {{ form_end(form) }}
 
