@@ -42,39 +42,47 @@
 					{{ form_widget(form.description) }}
 					{{ form_help(form.description) }}
 				</div>
+			</div>	
+			
+			<div class="col-md" style="margin-top:20px">
+				<div class="row">
+					<button class="btn btn-info">{{ button_label|default('Sauvegarder') }}</button>
+				</div>
+			
+				<div class="row" style="margin-top:10px">
+					<a href="{{ path('recette_index') }}">Retour à la liste</a>
+				</div>
 			</div>		
+				
 		</div>
 
 		<div class="col-md">
 			{{ form_label(form.ingredients) }} :
-			<div class="row">
-				<div class="col-md-6">
-					<ul id="ingredient-fields-list"
-						data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
-						data-widget-tags="{{ '<li></li>'|e }}">
-						{% for ingredientField in form.ingredients %}
-							<li>
-								{{ form_errors(ingredientField) }}
-								{{ form_widget(ingredientField) }}
-								{{ form_help(ingredientField) }}
-							</li>
-						{% endfor %}
-					</ul>
+			
+			<div class="col-md-6">
+				<div class="row" id="ingredient-fields-list"
+					data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
+					data-widget-tags="{{ '<p></p>'|e }}">
+					{% for ingredientField in form.ingredients %}
+						<p>
+							{{ form_errors(ingredientField) }}
+							{{ form_widget(ingredientField) }} 
+							{{ form_help(ingredientField) }}
+						</p>
+					{% endfor %}
+					
 					{% do form.ingredients.setRendered %}
-					<button type="button"
-						class="add-another-collection-widget btn-secondary"
-						data-list="#ingredient-fields-list">Ajouter un ingredient
-					</button>
+					
 				</div>
+				
+				<input type="button"
+					class="add-another-collection-widget btn btn-secondary"
+					data-list="#ingredient-fields-list" value="+" style="font-weight: bold" />
+				
 			</div>
-		</div>	
-	</div>
+		</div>			
 	
-	<div class="row">
-		<div class="col-md-2 col-md-2 align-self-end">
-			<button class="btn btn-info">{{ button_label|default('Sauvegarder') }}</button>
-		</div>
+		{{ form_end(form) }}
+
 	</div>
 </div>
-{{ form_end(form) }}
-

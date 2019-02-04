@@ -8,11 +8,6 @@
 
 		{{ include('recette/_form.html.twig') }}
 		
-		<div class="row" style="margin-top:20px">
-			<div class="col-md">
-				<a href="{{ path('recette_index') }}">Retour à la liste</a>
-			</div>
-		</div>
 	</div>
 {% endblock %}
 
@@ -22,12 +17,10 @@
 // add-collection-widget.js
 jQuery(document).ready(function () {
     jQuery('.add-another-collection-widget').click(function (e) {
-        var list = jQuery(jQuery(this).attr('data-list'));
+        var list = jQuery("#ingredient-fields-list");
         // Try to find the counter of the list
         var counter = list.data('widget-counter') | list.children().length;
-        // If the counter does not exist, use the length of the list
-        if (!counter) { counter = list.children().length; }
-		
+        		
 		// grab the prototype template
         var newWidget = list.attr('data-prototype');
         // replace the "__name__" used in the id and name of the prototype
