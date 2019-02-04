@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return $this->render('index.html.twig');
+        return $this->render('index/index.html.twig');
     }
 
     /**
@@ -24,12 +24,5 @@ class IndexController extends Controller
         return $this->render('Admin/index.html.twig');
     }
 	
-	/**
-     * @Route("/admin/test", name="adminTest")
-     */
-	public function adminTest()
-    {
-        return $this->render('Admin/Test/index.html.twig');
-    }
 
 }
