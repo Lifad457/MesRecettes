@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div style="margin-top:110px">	
+		{% for recette in recettes %}
+			<h1>{{ recette.nom_recette }}</h1>
+			</br>
+		{% endfor %}
+	</div>
+
+{% endblock %}
