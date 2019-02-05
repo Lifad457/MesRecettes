@@ -46,7 +46,6 @@ class IndexController extends AbstractController
                 'nom_recette' => htmlspecialchars($recette->getNomRecette(), ENT_COMPAT | ENT_HTML5),
             ];
         }
-        /**return $this->json($results);*/
 		return $this->render('index/recherche.html.twig', array('recettes' =>$results));
     }
 	

@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-	<div style="margin-top:110px">	
-		{% for recette in recettes %}
-			<h1>{{ recette.nom_recette }}</h1>
-			</br>
-		{% endfor %}
-	</div>
-
+{% block body %}	
+	{% for recette in recettes %}
+		<div class="container"  style="margin-top:100px">
+			<div class="row">
+				<div class="col-md-auto">
+					<img class="img-fluid" src="{{ asset('Img/tzatziki-en-verrine.jpeg/text=First slide') }} alt="Responsive image" style="height: 200px;">
+				</div>
+				<div class="col-md">
+					<h1 class="display-3">{{ recette.nom_recette }}</h1>
+					<br>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}
