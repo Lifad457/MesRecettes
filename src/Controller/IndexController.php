@@ -33,9 +33,6 @@ class IndexController extends AbstractController
      */
     public function recherche(Request $request, RecetteRepository $recettes): Response
     {
-        /**if (!$request->isXmlHttpRequest()) {
-            return $this->render('index/recherche.html.twig', ['recette' => $request->query->get('q', '')]);
-        }*/
         $query = $request->query->get('q', '');
         $limit = $request->query->get('l', 10);
         $recettesTrouvees = $recettes->findBySearchQuery($query, $limit);
@@ -44,6 +41,7 @@ class IndexController extends AbstractController
         foreach ($recettesTrouvees as $recette) {
             $results[] = [
                 'nom_recette' => htmlspecialchars($recette->getNomRecette(), ENT_COMPAT | ENT_HTML5),
+				'description' => htmlspecialchars($recette->getDescription(), ENT_COMPAT | ENT_HTML5),
             ];
         }
 		return $this->render('index/recherche.html.twig', array('recettes' =>$results));
