@@ -19,7 +19,7 @@ class IndexController extends AbstractController
     {
         return $this->render('index/index.html.twig');
     }
-
+    
     /**
      * @Route("/admin", name="admin")
      */
@@ -40,8 +40,8 @@ class IndexController extends AbstractController
         $results = [];
         foreach ($recettesTrouvees as $recette) {
             $results[] = [
-                'nom_recette' => htmlspecialchars($recette->getNomRecette(), ENT_COMPAT | ENT_HTML5),
-				'description' => htmlspecialchars($recette->getDescription(), ENT_COMPAT | ENT_HTML5),
+                'nom_recette' => $recette->getNomRecette(),
+				'description' => $recette->getDescription(),
             ];
         }
 		return $this->render('index/recherche.html.twig', array('recettes' =>$results));

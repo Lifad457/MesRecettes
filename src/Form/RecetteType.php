@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class RecetteType extends AbstractType
 {
@@ -18,7 +19,7 @@ class RecetteType extends AbstractType
             ->add('nom_recette')
             ->add('difficulte')
             ->add('note')
-            ->add('description')
+            ->add('description', CKEditorType::class)
 			->add('ingredients', CollectionType::class, array(
 				'entry_type' => IngredientType::class,
 				'entry_options' => array('label' => false),

@@ -8,15 +8,11 @@
 				<img class="img-fluid" src="{{ asset('Img/tzatziki-en-verrine.jpeg/text=First slide') }} alt="Responsive image" style="height: 200px;">
 			</div>
 			<div class="col-md">
-				<h1>{{ recette.nom_recette }}</h1>
+				<h1>{{ recette.nom_recette|striptags }}</h1>
 				<p>
-					{% if recette.description|length > 400 %}
-						{{ recette.description|truncate(400) }}
-					{% else %}
-						{{ recette.description }}
-					{% endif %}
+					{{ recette.description|striptags|length > 300 ? recette.description|truncate(300, true)|raw : recette.description|raw }}
 				</p>
-				<a href="#" >Lire la suite</a>
+				<a href="#" >Voir la recette !</a>
 			</div>
 		</div>
 	{% endfor %}

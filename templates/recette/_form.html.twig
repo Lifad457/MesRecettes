@@ -33,16 +33,6 @@
 					{{ form_help(form.difficulte) }}
 				</div>
 			</div>
-			<div class="row" style="margin-top:10px">
-				<div class="col-md-3">
-					{{ form_label(form.description) }} :
-					{{ form_errors(form.description) }}
-				</div>
-				<div class="col-md-3">
-					{{ form_widget(form.description) }}
-					{{ form_help(form.description) }}
-				</div>
-			</div>	
 			
 			<div class="col-md" style="margin-top:20px">
 				<div class="row">
@@ -54,6 +44,16 @@
 				</div>
 			</div>		
 				
+			<div class="col-md">
+				<div class="row" style="margin-top:10px">	
+					{{ form_label(form.description) }} :
+					{{ form_errors(form.description) }}
+				</div>	
+				<div class="row" style="margin-top:10px">
+					{{ form_widget(form.description) }}
+					{{ form_help(form.description) }}
+				</div>
+			</div>	
 		</div>
 
 		<div class="col-md">
@@ -81,7 +81,7 @@
 				
 			</div>
 		</div>			
-	
+
 		{{ form_end(form) }}
 
 	</div>
