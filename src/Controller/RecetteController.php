@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/recette")
  */
@@ -60,6 +61,9 @@ class RecetteController extends AbstractController
     public function edit(Request $request, Recette $recette): Response
     {
         $form = $this->createForm(RecetteType::class, $recette);
+        if ($this->getUser() == $recette->getUser()) {
+            $recette->setUser($this->getUser());    
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

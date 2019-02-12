@@ -31,9 +31,9 @@ class Recette
     private $ingredients;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="recette", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="recettes")
      */
-    private $etapes;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -103,35 +103,6 @@ class Recette
         return $this;
     }
 
-    /**
-     * @return Collection|etape[]
-     */
-    public function getEtapes(): Collection
-    {
-        return $this->etapes;
-    }
-
-    public function addEtape(etape $etape): self
-    {
-        $this->etapes[] = $etape;
-        $etape->setRecette($this);
-
-        return $this;
-    }
-
-    public function removeEtape(etape $etape): self
-    {
-        if ($this->etapes->contains($etape)) {
-            $this->etapes->removeElement($etape);
-            // set the owning side to null (unless already changed)
-            if ($etape->getRecette() === $this) {
-                $etape->setRecette(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDifficulte(): ?string
     {
         return $this->difficulte;
@@ -164,6 +135,18 @@ class Recette
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
