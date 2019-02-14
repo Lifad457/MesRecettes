@@ -30,6 +30,7 @@ class RecetteController extends AbstractController
     public function new(Request $request): Response
     {
         $recette = new Recette();
+        $recette->setUser($this->getUser());
         $form = $this->createForm(RecetteType::class, $recette);
         $form->handleRequest($request);
 
@@ -61,9 +62,6 @@ class RecetteController extends AbstractController
     public function edit(Request $request, Recette $recette): Response
     {
         $form = $this->createForm(RecetteType::class, $recette);
-        if ($this->getUser() == $recette->getUser()) {
-            $recette->setUser($this->getUser());    
-        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

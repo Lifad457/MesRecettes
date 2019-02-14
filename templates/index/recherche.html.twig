@@ -12,7 +12,7 @@
 				<p>
 					{{ recette.description|striptags|length > 300 ? recette.description|truncate(300, true)|raw : recette.description|raw }}
 				</p>
-				<a href="#" >Voir la recette !</a>
+				<a href="{{ path('recette_show', {'id': recette.id_recette}) }}" >Voir la recette !</a>
 			</div>
 		</div>
 	{% endfor %}

@@ -33,16 +33,6 @@
 					{{ form_help(form.difficulte) }}
 				</div>
 			</div>
-			
-			<div class="col-md" style="margin-top:20px">
-				<div class="row">
-					<button class="btn btn-danger">{{ button_label|default('Sauvegarder') }}</button>
-				</div>
-			
-				<div class="row" style="margin-top:10px">
-					<a href="{{ path('recette_index') }}">Retour à la liste</a>
-				</div>
-			</div>		
 				
 			<div class="col-md">
 				<div class="row" style="margin-top:10px">	
@@ -54,32 +44,50 @@
 					{{ form_help(form.description) }}
 				</div>
 			</div>	
+
+			<div class="col-md" style="margin-top:20px">
+				<div class="row">
+					<button class="btn btn-danger">{{ button_label|default('Sauvegarder') }}</button>
+				
+					<div class="col-4" style="margin-top:20px">
+						<a href="{{ path('recette_index') }}">Retour à la liste</a>
+					</div>
+					{% if recette.id|length > 0 %}
+						<div class="col-3" style="margin-top:20px">
+							<a href="{{ path('recette_show', {'id': recette.id}) }}">Voir la recette</a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md">
 			{{ form_label(form.ingredients) }} :
 			
-			<div class="col-md-6">
-				<div class="row" id="ingredient-fields-list"
-					data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
-					data-widget-tags="{{ '<p></p>'|e }}">
-					{% for ingredientField in form.ingredients %}
-						<p>
-							{{ form_errors(ingredientField) }}
-							{{ form_widget(ingredientField) }} 
-							{{ form_help(ingredientField) }}
-						</p>
-					{% endfor %}
+				<div class="col-md-6">
+					<div class="row" id="ingredient-fields-list"
+						data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
+						data-widget-tags="{{ '<p></p>'|e }}">
+						
+						{% for ingredientField in form.ingredients %}
+							<p>
+								{{ form_errors(ingredientField) }}
+								{{ form_widget(ingredientField) }} 
+								{{ form_help(ingredientField) }}
+							</p>
+						{% endfor %}
+						
+						{% do form.ingredients.setRendered %}
+						
+					</div>
 					
-					{% do form.ingredients.setRendered %}
-					
+					<div class="row"  style="margin-top:10px">
+						<input type="button"
+							class="add-another-collection-widget btn btn-outline-secondary"
+							data-list="#ingredient-fields-list" value="+" style="font-weight: bold; height: 30px; line-height:10px;" />
+					</div>
 				</div>
-				
-				<input type="button"
-					class="add-another-collection-widget btn btn-secondary"
-					data-list="#ingredient-fields-list" value="+" style="font-weight: bold" />
-				
-			</div>
+			
 		</div>			
 
 		{{ form_end(form) }}

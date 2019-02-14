@@ -40,6 +40,7 @@ class IndexController extends AbstractController
         $results = [];
         foreach ($recettesTrouvees as $recette) {
             $results[] = [
+                'id_recette' => $recette->getId(),
                 'nom_recette' => $recette->getNomRecette(),
 				'description' => $recette->getDescription(),
             ];
