@@ -14,11 +14,10 @@ class IngredientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom_ingredient', TextType::class, array('label' => false))
-                ->add('-', ButtonType::class, [
+                ->add('suppr', ButtonType::class, [
                     'attr' => [
                         'class' => 'remove-collection-widget btn btn-outline-warning',
                         'data-list' => '#ingredient-fields-list',
-                        'value' => '-',
                         'style' => 'font-weight: bold; height: 30px; line-height:10px; margin-left:10px;'
                     ],
                 ]);

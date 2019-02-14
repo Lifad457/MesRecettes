@@ -64,15 +64,15 @@
 		<div class="col-md">
 			{{ form_label(form.ingredients) }} :
 			
-				<div class="col-md-6">
-					<div class="row" id="ingredient-fields-list"
+					<div class="form-group" id="ingredient-fields-list"
 						data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
 						data-widget-tags="{{ '<p></p>'|e }}">
 						
 						{% for ingredientField in form.ingredients %}
 							<p>
 								{{ form_errors(ingredientField) }}
-								{{ form_widget(ingredientField) }} 
+								{{ form_widget(ingredientField.nom_ingredient) }} 
+								{{ form_widget(ingredientField.suppr) }} 
 								{{ form_help(ingredientField) }}
 							</p>
 						{% endfor %}
@@ -80,14 +80,11 @@
 						{% do form.ingredients.setRendered %}
 						
 					</div>
-					
-					<div class="row"  style="margin-top:10px">
-						<input type="button"
-							class="add-another-collection-widget btn btn-outline-secondary"
-							data-list="#ingredient-fields-list" value="+" style="font-weight: bold; height: 30px; line-height:10px;" />
-					</div>
-				</div>
-			
+
+					<input type="button"
+						class="add-another-collection-widget btn btn-outline-secondary"
+						data-list="#ingredient-fields-list" value="+" style="font-weight: bold; height: 30px; line-height:10px;" />
+
 		</div>			
 
 		{{ form_end(form) }}
