@@ -63,27 +63,27 @@
 
 		<div class="col-md">
 			{{ form_label(form.ingredients) }} :
-			
-					<div class="form-group" id="ingredient-fields-list"
-						data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}"
-						data-widget-tags="{{ '<p></p>'|e }}">
-						
-						{% for ingredientField in form.ingredients %}
-							<p>
-								{{ form_errors(ingredientField) }}
-								{{ form_widget(ingredientField.nom_ingredient) }} 
-								{{ form_widget(ingredientField.suppr) }} 
-								{{ form_help(ingredientField) }}
-							</p>
-						{% endfor %}
-						
-						{% do form.ingredients.setRendered %}
-						
-					</div>
+				
+				<div class="form-group" id="ingredient-fields-list"
+						data-prototype="<input type=&quot;text&quot;id=&quot; recette_ingredients___name___nom_ingredient&quot; name=&quot;recette[ingredients][__name__][nom_ingredient]&quot; required=&quot;required&quot; /><button type=&quot;button&quot; id=&quot;recette_ingredients___name___Suppr&quot; name=&quot;recette[ingredients][__name__][Suppr]&quot; class=&quot;remove-collection-widget btn btn-outline-warning&quot; data-list=&quot;#ingredient-fields-list&quot; style=&quot;font-weight: bold; height: 30px; line-height:10px; margin-left:10px;&quot;>Suppr</button>"
+						data-widget-tags="{{ '<div class="form-group"></div>'|e }}">
 
-					<input type="button"
-						class="add-another-collection-widget btn btn-outline-secondary"
-						data-list="#ingredient-fields-list" value="+" style="font-weight: bold; height: 30px; line-height:10px;" />
+					{% for ingredientField in form.ingredients %}
+						<div class="form-group">
+							{{ form_errors(ingredientField) }}
+							{{ form_widget(ingredientField.nom_ingredient) }} 
+							{{ form_widget(ingredientField.Suppr) }} 
+							{{ form_help(ingredientField) }}
+						</div>
+					{% endfor %}
+					
+					{% do form.ingredients.setRendered %}
+					
+				</div>
+
+				<input type="button"
+					class="add-another-collection-widget btn btn-outline-info"
+					data-list="#ingredient-fields-list" value="Ajout" style="font-weight: bold; height: 30px; line-height:10px;" />
 
 		</div>			
 
